@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "name": "Total Investment",
+        "route": "/calculation/total-investment"
+    },
+    {
+        "id": 2,
+        "name": "Total Receipt Contractor",
+        "route": "/calculation/total-receipt-contractor"
+    },
+    {
+        "id": 3,
+        "name": "Total Government Receipt",
+        "route": "/calculation/total-government-receipt"
+    },
+    {
+        "id": 4,
+        "name": "Net Present Value Of Project",
+        "route": "/calculation/npv"
+    }
+]
