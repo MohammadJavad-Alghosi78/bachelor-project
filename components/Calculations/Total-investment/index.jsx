@@ -1,21 +1,39 @@
-import React, { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import LoginFormItem from "../../LoginForm/LoginFormItem";
 import LoginFormTitle from "../../LoginForm/LoginFormTitle";
+import { Button, Form } from "react-bootstrap";
 import { LoginFormWrapper } from "../../LoginForm/style";
 
 const TotalInvestmentForm = () => {
   // States
-  const [X, setX] = useState(null); // X
-  const [XPrim, setXPrim] = useState(null); // X-prim
+  const [X, setX] = useState(""); // X
+  const [XPrim, setXPrim] = useState(""); // X-prim
   const [expAppCosts, setExpAppConsts] = useState([]); // C_ex&app
   const [directCapitalCosts, setDirectCapitalCosts] = useState([]); // DDC
   const [indirectCosts, setIndirectCosts] = useState([]); // IDC
+  const [totalInvestmentAmount, setTotalInvestmentAmount] = useState(0);
 
   // Handlers
   const handleSubmit = (event) => {
     event.preventDefault();
+    const data = axios
+      .post("/api/total-investment", {
+        X,
+        XPrim,
+        expAppCosts,
+        directCapitalCosts,
+        indirectCosts,
+      })
+      .then((response) =>
+        setTotalInvestmentAmount(response.data.totalInvestmentAmount.toFixed(2))
+      )
+      .catch((error) => console.log(error));
   };
+
+  useEffect(() => {
+    console.log(totalInvestmentAmount);
+  }, [totalInvestmentAmount]);
 
   // JSX
   return (
