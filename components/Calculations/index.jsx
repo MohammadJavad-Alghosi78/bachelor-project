@@ -8,23 +8,21 @@ import Link from "next/link";
 const Calculations = () => {
   return (
     <CalculationPageWrapper>
-      <Container fluid>
-        <Row>
-          {EconomicParameters?.map((item) => (
-            <Link href={item.route} passHref>
-              <Col
-                key={item.id}
-                className="economic-parameter-element"
-                xs={12}
-                md={{ span: 4 }}
-                lg={4}
-              >
-                <EconomicCard title={item.name} />
-              </Col>
-            </Link>
-          ))}
-        </Row>
-      </Container>
+      <Row>
+        {EconomicParameters?.map((item) => (
+          <Link href={item.route} passHref>
+            <Col
+              key={item.id}
+              className="economic-parameter-element"
+              xs={12}
+              md={{ span: 6 }}
+              lg={4}
+            >
+              <EconomicCard title={item.name} />
+            </Col>
+          </Link>
+        ))}
+      </Row>
     </CalculationPageWrapper>
   );
 };

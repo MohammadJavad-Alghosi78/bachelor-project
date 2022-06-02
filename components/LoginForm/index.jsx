@@ -6,13 +6,13 @@ import { useRouter } from "next/router";
 // * Components
 import LoginFormItem from "./LoginFormItem";
 import LoginFormTitle from "./LoginFormTitle";
+import LoginErrorModal from "./LoginErrorModal";
 
 // * Design System
 import { Button, Form } from "react-bootstrap";
 
 // * Styles
 import { LoginFormWrapper } from "./style";
-import LoginErrorModal from "./LoginErrorModal";
 
 // * Component
 const LoginForm = () => {
