@@ -1,7 +1,8 @@
 import React from "react";
+import TotalInvestmentForm from "../../components/Calculations/Total-investment";
 
 const TotalInvestment = () => {
-  return <h2>Total Investment</h2>;
+  return <TotalInvestmentForm />;
 };
 
 export default TotalInvestment;

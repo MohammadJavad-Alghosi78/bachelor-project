@@ -1,28 +1,29 @@
-// * node_modules
+// node_modules
 import React, { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 
-// * Components
+// Components
 import LoginFormItem from "./LoginFormItem";
 import LoginFormTitle from "./LoginFormTitle";
-
-// * Design System
-import { Button, Form } from "react-bootstrap";
-
-// * Styles
-import { LoginFormWrapper } from "./style";
 import LoginErrorModal from "./LoginErrorModal";
 
-// * Component
+// Design System
+import { Button, Form } from "react-bootstrap";
+
+// Styles
+import { LoginFormWrapper } from "./style";
+
+// Component
 const LoginForm = () => {
   const router = useRouter();
-  // * States
+
+  // States
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isShowErrorModal, setIsShowErrorModal] = useState(false);
 
-  // * Handlers
+  // Handlers
   const handleChangeInput = (event) => {
     const { name, value } = event.target;
     if (name === "email") setEmail(value);
@@ -37,7 +38,7 @@ const LoginForm = () => {
         if (response.status === 200) localStorage.setItem("token", "abcdef");
         router.replace("/");
       })
-      .catch((err) => {
+      .catch(() => {
         localStorage.removeItem("token");
         setIsShowErrorModal(true);
       });
