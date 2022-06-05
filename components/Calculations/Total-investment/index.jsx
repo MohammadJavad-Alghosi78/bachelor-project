@@ -17,7 +17,7 @@ const TotalInvestmentForm = () => {
   // Handlers
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = axios
+    axios
       .post("/api/total-investment", {
         X,
         XPrim,
@@ -30,10 +30,6 @@ const TotalInvestmentForm = () => {
       )
       .catch((error) => console.log(error));
   };
-
-  useEffect(() => {
-    console.log(totalInvestmentAmount);
-  }, [totalInvestmentAmount]);
 
   // JSX
   return (
