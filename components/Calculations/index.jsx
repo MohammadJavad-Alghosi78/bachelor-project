@@ -10,7 +10,7 @@ const Calculations = () => {
     <CalculationPageWrapper>
       <Row>
         {EconomicParameters?.map((item) => (
-          <Link href={item.route} passHref>
+          <Link href={item.route} passHref key={item.name}>
             <Col
               key={item.id}
               className="economic-parameter-element"

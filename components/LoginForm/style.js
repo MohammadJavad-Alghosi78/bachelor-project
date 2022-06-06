@@ -12,7 +12,7 @@ export const LoginFormWrapper = styled.div`
   -webkit-box-shadow: -1px 4px 13px -1px rgba(0, 0, 0, 0.77);
   box-shadow: -1px 4px 13px -1px rgba(0, 0, 0, 0.77);
   @media (min-width: 992px) {
-    width: 50%;
+    width: 80%;
   }
   form {
     width: 100%;
