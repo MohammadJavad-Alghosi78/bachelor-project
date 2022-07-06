@@ -1,9 +1,12 @@
+// node_modules
 import React from 'react';
+// components
+import AboutUs from '../components/AboutUs';
 
-const AboutUs = () => {
+const AboutUsPage = () => {
     return (
-        <div>About us page</div>
+       <AboutUs />
     )
 }
 
-export default AboutUs
+export default AboutUsPage;
