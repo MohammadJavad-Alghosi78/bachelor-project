@@ -1,7 +1,6 @@
 import React from "react";
+import TotalRecieptContractor from "../../components/Calculations/TotalRecieptContractor";
 
-const TotalRevenueContractor = () => {
-  return <h2>Total Revenue Contractor</h2>;
-};
+const TotalRecieptContractorPage = () => <TotalRecieptContractor />;
 
-export default TotalRevenueContractor;
+export default TotalRecieptContractorPage;
