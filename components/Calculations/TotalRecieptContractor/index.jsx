@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import LoginFormItem from "../../LoginForm/LoginFormItem";
@@ -10,12 +11,13 @@ const TotalRecieptContractor = () => {
   const [idcrecAfterFDP, setIdcrecAfterFDP] = useState("");
   const [costOfMoney, setCostOfMoney] = useState("");
   const [directCapitalCast, setDirectCapitalCast] = useState("");
+  const [remunerationFeeRecovery, setRemunerationFeeRecovery] = useState("");
 
   // Handlers
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post("/api/total-govenment-receipt", {
+      .post("/api/total-receipt-contractor", {
         opex,
         idcrecBeforeFDP,
         idcrecAfterFDP,
@@ -24,11 +26,11 @@ const TotalRecieptContractor = () => {
       })
       .then((response) => {
         const {
-          discountedPresentValues,
-          npv,
-          timeSteps,
-          totalCosts,
-          totalRevnue,
+          finalOpex,
+          finalIdcrecBeforeFDP,
+          finalIdcrecAfterFDP,
+          finalCostOfMoney,
+          finalDirectCapitalCast,
         } = response.data;
       })
       .catch((error) => console.log(error));
@@ -44,7 +46,7 @@ const TotalRecieptContractor = () => {
               controlId="opex"
               label="OPEX:"
               type="text"
-              placeholder="Example: 1,000,000, 2,000,000, 1,000,000"
+              placeholder="Example: 1000000, 2,000000, 1000000"
               required
               value={opex}
               onChange={(event) => setOpex(event.target.value)}
@@ -53,7 +55,7 @@ const TotalRecieptContractor = () => {
               controlId="idc-before-fdp"
               label="indirect costs before first date production:"
               type="text"
-              placeholder="Example: 5,000,000, 3,000,000, 7,000,000"
+              placeholder="Example: 5000000, 3000000, 7000000"
               required
               value={idcrecBeforeFDP}
               onChange={(event) => setIdcrecBeforeFDP(event.target.value)}
@@ -62,7 +64,7 @@ const TotalRecieptContractor = () => {
               controlId="idc-after-fdp"
               label="indirect costs after first date production:"
               type="text"
-              placeholder="Example: 5,000,000, 3,000,000, 7,000,000"
+              placeholder="Example: 5000000, 3000000, 7000000"
               required
               value={idcrecAfterFDP}
               onChange={(event) => setIdcrecAfterFDP(event.target.value)}
@@ -71,7 +73,7 @@ const TotalRecieptContractor = () => {
               controlId="cost-of-money"
               label="cost of money:"
               type="text"
-              placeholder="Example: 5,000,000, 3,000,000, 7,000,000"
+              placeholder="Example: 5000000, 3000000, 7000000"
               required
               value={costOfMoney}
               onChange={(event) => setCostOfMoney(event.target.value)}
@@ -80,7 +82,7 @@ const TotalRecieptContractor = () => {
               controlId="direct-capital-cast"
               label="direct capital cast:"
               type="text"
-              placeholder="Example: 5,000,000, 3,000,000, 7,000,000"
+              placeholder="Example: 5000000, 3000000, 7000000"
               required
               value={directCapitalCast}
               onChange={(event) => setDirectCapitalCast(event.target.value)}
@@ -89,10 +91,12 @@ const TotalRecieptContractor = () => {
               controlId="remuneration-fee-recovery"
               label="remuneration fee recovery:"
               type="text"
-              placeholder="Example: 5,000,000, 3,000,000, 7,000,000"
+              placeholder="Example: 5000000, 3000000, 7000000"
               required
-              value={directCapitalCast}
-              onChange={(event) => setDirectCapitalCast(event.target.value)}
+              value={remunerationFeeRecovery}
+              onChange={(event) =>
+                setRemunerationFeeRecovery(event.target.value)
+              }
             />
             <Button variant="primary" type="submit" size="lg">
               Submit
