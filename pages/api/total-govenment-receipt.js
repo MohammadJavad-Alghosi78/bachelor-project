@@ -9,6 +9,7 @@ const totalGovernmentReceiptHandler = (req, res) => {
     idcrecAfterFDP,
     costOfMoney,
     directCapitalCast,
+    remunerationFeeRecovery,
   } = req.body;
   const data = totalGovernmentReceiptModel(
     oilPrice,
@@ -17,7 +18,8 @@ const totalGovernmentReceiptHandler = (req, res) => {
     idcrecBeforeFDP,
     idcrecAfterFDP,
     costOfMoney,
-    directCapitalCast
+    directCapitalCast,
+    remunerationFeeRecovery
   );
   res.status(200).json(data);
 };

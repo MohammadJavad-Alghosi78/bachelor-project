@@ -7,7 +7,8 @@ const totalGovernmentReceiptModel = (
   idcrecBeforeFDP,
   idcrecAfterFDP,
   costOfMoney,
-  directCapitalCast
+  directCapitalCast,
+  remunerationFeeRecovery
 ) => {
   const finalOilPrice = oilPrice.split(",").map((item) => parseFloat(item));
   const finalProductionRate = productionRate
@@ -26,6 +27,9 @@ const totalGovernmentReceiptModel = (
   const finalDirectCapitalCast = directCapitalCast
     .split(",")
     .map((item) => parseFloat(item));
+  const finalRemunerationFeeRecovery = remunerationFeeRecovery
+    .split(",")
+    .map((item) => parseFloat(item));
   return {
     finalOilPrice,
     finalProductionRate,
@@ -34,6 +38,7 @@ const totalGovernmentReceiptModel = (
     finalIdcrecAfterFDP,
     finalCostOfMoney,
     finalDirectCapitalCast,
+    finalRemunerationFeeRecovery,
   };
 };
 
