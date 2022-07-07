@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
@@ -13,6 +14,7 @@ const TotalGovernmentReceipt = () => {
   const [idcrecAfterFDP, setIdcrecAfterFDP] = useState("");
   const [costOfMoney, setCostOfMoney] = useState("");
   const [directCapitalCast, setDirectCapitalCast] = useState("");
+  const [remunerationFeeRecovery, setRemunerationFeeRecovery] = useState("");
 
   // Handlers
   const handleSubmit = (event) => {
@@ -114,8 +116,8 @@ const TotalGovernmentReceipt = () => {
               type="text"
               placeholder="Example: 5,000,000, 3,000,000, 7,000,000"
               required
-              value={directCapitalCast}
-              onChange={(event) => setDirectCapitalCast(event.target.value)}
+              value={remunerationFeeRecovery}
+              onChange={(event) => setRemunerationFeeRecovery(event.target.value)}
             />
             <Button variant="primary" type="submit" size="lg">
               Submit

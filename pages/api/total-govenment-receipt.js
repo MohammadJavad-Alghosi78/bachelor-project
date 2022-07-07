@@ -1,6 +1,6 @@
 import totalGovernmentReceiptModel from "../../models/total-government-receipt";
 
-const NpvHandler = (req, res) => {
+const totalGovernmentReceiptHandler = (req, res) => {
   const {
     oilPrice,
     productionRate,
@@ -22,4 +22,4 @@ const NpvHandler = (req, res) => {
   res.status(200).json(data);
 };
 
-export default NpvHandler;
+export default totalGovernmentReceiptHandler;
