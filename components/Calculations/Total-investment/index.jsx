@@ -64,7 +64,7 @@ const TotalInvestmentForm = () => {
           finalIndirectCostsList,
         } = response.data.totalInvestmentAmount;
         setFinalExpAppCosts(
-          finalDirectCapitalCast.reduce((prev, current) => prev + current)
+          finalExpAppCosts.reduce((prev, current) => prev + current)
         );
         setFinalDirectCapitalCast(
           finalDirectCapitalCast.reduce((prev, current) => prev + current)
