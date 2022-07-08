@@ -181,9 +181,45 @@ const TotalInvestmentForm = () => {
             margin: "32px 0",
           }}
         >
-          <h3>Sum of exploration and appraisal costs: {finalExpAppCosts}</h3>
-          <h3>Sum of direct capital costs: {finalDirectCapitalCast}</h3>
-          <h3>Sum of indirect costs: {finalIndirectCostsList}</h3>
+          <h3>
+            Sum of exploration and appraisal costs: {finalExpAppCosts}
+            <span style={{ fontWeight: "bold", display: "block" }}>
+              (
+              {(finalExpAppCosts * 100) /
+                (
+                  finalExpAppCosts +
+                  finalDirectCapitalCast +
+                  finalIndirectCostsList
+                ).toFixed(2)}
+              % )
+            </span>
+          </h3>
+          <h3>
+            Sum of direct capital costs: {finalDirectCapitalCast}
+            <span style={{ fontWeight: "bold", display: "block" }}>
+              (
+              {(finalDirectCapitalCast * 100) /
+                (
+                  finalExpAppCosts +
+                  finalDirectCapitalCast +
+                  finalIndirectCostsList
+                ).toFixed(2)}
+              % )
+            </span>
+          </h3>
+          <h3>
+            Sum of indirect costs: {finalIndirectCostsList}
+            <span style={{ fontWeight: "bold", display: "block" }}>
+              (
+              {(finalIndirectCostsList * 100) /
+                (
+                  finalExpAppCosts +
+                  finalDirectCapitalCast +
+                  finalIndirectCostsList
+                ).toFixed(2)}
+              % )
+            </span>
+          </h3>
         </div>
       </Col>
     </Row>
