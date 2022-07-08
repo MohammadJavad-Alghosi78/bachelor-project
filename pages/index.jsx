@@ -1,10 +1,9 @@
-import { Button } from 'react-bootstrap'
-import Header from '../components/Layout/Header'
+import React from "react";
+// components
+import Home from "../components/Home";
 
-export default function Home() {
-  return (
-    <div>
-      HOME
-    </div>
-  )
+function HomePage() {
+  return <Home />;
 }
+
+export default HomePage;
