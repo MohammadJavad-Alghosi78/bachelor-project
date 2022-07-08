@@ -133,7 +133,9 @@ const NpvCp = () => {
         });
         setNpv(npv);
         setSumDiscountedPresentValues(
-          discountedPresentValues.reduce((prev, current) => prev + current)
+          discountedPresentValues
+            .reduce((prev, current) => prev + current)
+            .toFixed(2)
         );
       })
       .catch((error) => console.log(error));
@@ -199,7 +201,10 @@ const NpvCp = () => {
           <Line options={options} data={chartData} />
         </div>
         {sumDiscountedPresentValues && (
-          <h3 style={{textAlign: 'center', margin: '24px auto'}}>Total discounted present values: {sumDiscountedPresentValues}</h3>
+          <h3 style={{ textAlign: "center", margin: "24px auto" }}>
+            Total discounted present values: {sumDiscountedPresentValues} MM
+            dollar
+          </h3>
         )}
       </Col>
     </Row>
