@@ -35,6 +35,9 @@ const TotalInvestmentForm = () => {
   const [directCapitalCosts, setDirectCapitalCosts] = useState([]); // DDC
   const [indirectCosts, setIndirectCosts] = useState([]); // IDC
   const [totalInvestmentAmount, setTotalInvestmentAmount] = useState(0);
+  const [finalExpAppCosts, setFinalExpAppCosts] = useState(0);
+  const [finalDirectCapitalCast, setFinalDirectCapitalCast] = useState(0);
+  const [finalIndirectCostsList, setFinalIndirectCostsList] = useState(0);
   const [doughnutChartData, setDoughnutChartData] = useState({
     labels: [],
     datasets: [],
@@ -60,6 +63,15 @@ const TotalInvestmentForm = () => {
           finalExpAppCostsList,
           finalIndirectCostsList,
         } = response.data.totalInvestmentAmount;
+        setFinalExpAppCosts(
+          finalDirectCapitalCast.reduce((prev, current) => prev + current)
+        );
+        setFinalDirectCapitalCast(
+          finalDirectCapitalCast.reduce((prev, current) => prev + current)
+        );
+        setFinalIndirectCostsList(
+          finalIndirectCostsList.reduce((prev, current) => prev + current)
+        );
         setDoughnutChartData({
           labels: [
             "exploration and appraisal costs",
@@ -158,6 +170,20 @@ const TotalInvestmentForm = () => {
           }}
         >
           <Doughnut data={doughnutChartData} />
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "flex-start",
+            flexDirection: "column",
+            width: "100%",
+            margin: "32px 0",
+          }}
+        >
+          <h3>Sum of exploration and appraisal costs: {finalExpAppCosts}</h3>
+          <h3>Sum of direct capital costs: {finalDirectCapitalCast}</h3>
+          <h3>Sum of indirect costs: {finalIndirectCostsList}</h3>
         </div>
       </Col>
     </Row>
