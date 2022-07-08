@@ -24,9 +24,23 @@ const totalInvestment = (
       0
     );
 
-  return (
-    expAppCostsSumation + directCapitalCostsSumation + indirectCostsSumation
-  );
+  const finalExpAppCostsList = expAppCostsList
+    .split(",")
+    .map((item) => parseFloat(item));
+  const finalDirectCapitalCast = directCapitalCostsList
+    .split(",")
+    .map((item) => parseFloat(item));
+  const finalIndirectCostsList = indirectCostsList
+    .split(",")
+    .map((item) => parseFloat(item));
+
+  return {
+    totalInvestmentAmount:
+      expAppCostsSumation + directCapitalCostsSumation + indirectCostsSumation,
+    finalExpAppCostsList,
+    finalDirectCapitalCast,
+    finalIndirectCostsList,
+  };
 };
 
 export default totalInvestment;

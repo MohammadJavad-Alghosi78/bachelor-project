@@ -4,6 +4,7 @@ import { Button, Col, Form, Row } from "react-bootstrap";
 import LoginFormItem from "../../LoginForm/LoginFormItem";
 import LoginFormTitle from "../../LoginForm/LoginFormTitle";
 import { LoginFormWrapper } from "../../LoginForm/style";
+import { Line, Doughnut } from "react-chartjs-2";
 
 import {
   Chart as ChartJS,
@@ -16,8 +17,6 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { Line, Doughnut } from "react-chartjs-2";
-import { useEffect } from "react";
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -200,16 +199,20 @@ const TotalRecieptContractor = () => {
                 sumDirectCapitalCast,
                 sumRemunerationFeeRecovery,
               ],
+              backgroundColor: [
+                "rgba(255, 99, 132, 0.2)",
+                "rgba(54, 162, 235, 0.2)",
+                "rgba(255, 206, 86, 0.2)",
+                "rgba(75, 192, 192, 0.2)",
+                "rgba(153, 102, 255, 0.2)",
+                "rgba(255, 159, 64, 0.2)",
+              ],
             },
           ],
         });
       })
       .catch((error) => console.log(error));
   };
-
-  useEffect(() => {
-    console.log("==========>", doughnutChartData)
-  }, [doughnutChartData])
 
   return (
     <Row>
@@ -294,7 +297,7 @@ const TotalRecieptContractor = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            margin: '32px 0'
+            margin: "32px 0",
           }}
         >
           <Doughnut data={doughnutChartData} />
