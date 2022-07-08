@@ -15,6 +15,7 @@ import {
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+import numberWithCommas from "../../../utils/number-seperator";
 
 ChartJS.register(
   CategoryScale,
@@ -368,9 +369,9 @@ const TotalGovernmentReceipt = () => {
         {mainChartData?.datasets.length && (
           <h1 style={{ textAlign: "center", margin: "32px 0" }}>
             Sum:
-            {mainChartData.datasets[0].data.reduce(
+            {numberWithCommas(mainChartData.datasets[0].data.reduce(
               (prev, current) => prev + current
-            )}
+            ))}
           </h1>
         )}
         <div
@@ -388,7 +389,7 @@ const TotalGovernmentReceipt = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            marginTop: "24px",
+            margin: "24px 0",
           }}
         >
           <Line

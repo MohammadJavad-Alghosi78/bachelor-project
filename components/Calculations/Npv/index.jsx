@@ -82,6 +82,8 @@ const NpvCp = () => {
   const [totalRevenue, setTotalRevenue] = useState([]); // TR
   const [totalCosts, setTotalCosts] = useState([]); // TC
   const [npv, setNpv] = useState(0);
+  const [sumDiscountedPresentValues, setSumDiscountedPresentValues] =
+    useState(null);
 
   const [chartData, setChartData] = useState({
     labels: [],
@@ -130,6 +132,9 @@ const NpvCp = () => {
           ],
         });
         setNpv(npv);
+        setSumDiscountedPresentValues(
+          discountedPresentValues.reduce((prev, current) => prev + current)
+        );
       })
       .catch((error) => console.log(error));
   };
@@ -193,6 +198,9 @@ const NpvCp = () => {
         >
           <Line options={options} data={chartData} />
         </div>
+        {sumDiscountedPresentValues && (
+          <h3 style={{textAlign: 'center', margin: '24px auto'}}>Total discounted present values: {sumDiscountedPresentValues}</h3>
+        )}
       </Col>
     </Row>
   );
