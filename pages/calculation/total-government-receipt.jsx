@@ -1,8 +1,8 @@
 import React from "react";
-import TotalGovernmentReceipt from "../../components/Calculations/totalGovernmentReceipt";
+import TotalGovernmentReceipt from "../../components/Calculations/TotalGovernmentReceipt";
 
 const TotalGovernmentReceiptPage = () => {
-  return <TotalGovernmentReceipt />
+  return <TotalGovernmentReceipt />;
 };
 
 export default TotalGovernmentReceiptPage;

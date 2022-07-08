@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
 // styles
 import { HomeWrapper } from "./style";
