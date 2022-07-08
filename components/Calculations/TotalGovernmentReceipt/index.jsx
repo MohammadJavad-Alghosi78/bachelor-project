@@ -124,6 +124,55 @@ export const oilPriceChartOptions = {
   },
 };
 
+export const productionRateChartOptions = {
+  responsive: true,
+  interaction: {
+    mode: "index",
+    intersect: false,
+  },
+  stacked: false,
+  plugins: {
+    legend: {
+      position: "top",
+      labels: {
+        font: {
+          size: 14,
+        },
+      },
+    },
+    title: {
+      display: true,
+      text: "Production Rate",
+      font: {
+        size: 24,
+      },
+    },
+  },
+  scales: {
+    y: {
+      type: "linear",
+      display: true,
+      position: "left",
+    },
+    x: {
+      axis: "test",
+      type: "linear",
+      display: true,
+      position: "left",
+      title: "4545454",
+    },
+    y1: {
+      type: "linear",
+      display: true,
+      title: "kfsjaljfl",
+      position: "right",
+      grid: {
+        drawOnChartArea: false,
+      },
+    },
+  },
+};
+
 const TotalGovernmentReceipt = () => {
   const [oilPrice, setOilPrice] = useState("");
   const [productionRate, setProductionRate] = useState("");
@@ -134,6 +183,10 @@ const TotalGovernmentReceipt = () => {
   const [directCapitalCast, setDirectCapitalCast] = useState("");
   const [remunerationFeeRecovery, setRemunerationFeeRecovery] = useState("");
 
+  const [productionRateChartData, setProductionRateChartData] = useState({
+    labels: [],
+    datasets: [],
+  });
   const [oilPriceChartData, setOilPriceChartData] = useState({
     labels: [],
     datasets: [],
@@ -176,6 +229,17 @@ const TotalGovernmentReceipt = () => {
               data: finalOilPrice,
               borderColor: "black",
               backgroundColor: "black",
+            },
+          ],
+        });
+        setProductionRateChartData({
+          labels: finalOilPrice.map((item, index) => index),
+          datasets: [
+            {
+              label: "Total Government Receipt",
+              data: finalProductionRate,
+              borderColor: "blue",
+              backgroundColor: "blue",
             },
           ],
         });
@@ -318,6 +382,19 @@ const TotalGovernmentReceipt = () => {
           }}
         >
           <Line options={oilPriceChartOptions} data={oilPriceChartData} />
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            marginTop: "24px",
+          }}
+        >
+          <Line
+            options={productionRateChartOptions}
+            data={productionRateChartData}
+          />
         </div>
       </Col>
     </Row>
