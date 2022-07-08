@@ -5,7 +5,8 @@ const totalReceiptContractorModel = (
   idcrecBeforeFDP,
   idcrecAfterFDP,
   costOfMoney,
-  directCapitalCast
+  directCapitalCast,
+  remunerationFeeRecovery
 ) => {
   const finalOpex = opex.split(",").map((item) => parseFloat(item));
   const finalIdcrecBeforeFDP = idcrecBeforeFDP
@@ -21,12 +22,17 @@ const totalReceiptContractorModel = (
     .split(",")
     .map((item) => parseFloat(item));
 
+  const finalRemunerationFeeRecovery = remunerationFeeRecovery
+    .split(",")
+    .map((item) => parseFloat(item));
+
   return {
     finalOpex,
     finalIdcrecBeforeFDP,
     finalIdcrecAfterFDP,
     finalCostOfMoney,
     finalDirectCapitalCast,
+    finalRemunerationFeeRecovery,
   };
 };
 

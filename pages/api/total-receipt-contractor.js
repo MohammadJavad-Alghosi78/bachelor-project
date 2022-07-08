@@ -7,15 +7,16 @@ const totalReceiptContractorHandler = (req, res) => {
     idcrecAfterFDP,
     costOfMoney,
     directCapitalCast,
+    remunerationFeeRecovery,
   } = req.body;
   const data = totalReceiptContractorModel(
     opex,
     idcrecBeforeFDP,
     idcrecAfterFDP,
     costOfMoney,
-    directCapitalCast
+    directCapitalCast,
+    remunerationFeeRecovery
   );
-  console.log(data)
   res.status(200).json(data);
 };
 
