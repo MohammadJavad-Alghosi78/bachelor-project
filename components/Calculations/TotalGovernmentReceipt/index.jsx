@@ -247,11 +247,11 @@ const TotalGovernmentReceipt = () => {
         const mainChartData = finalOilPrice.map((item, index) => {
           return (
             finalOilPrice[index] * finalProductionRate[index] -
-            finalOpex[index] +
-            finalIdcrecAfterFDP[index] +
-            finalIdcrecBeforeFDP[index] +
-            finalCostOfMoney[index] +
-            finalDirectCapitalCast[index] +
+            finalOpex[index] -
+            finalIdcrecAfterFDP[index] -
+            finalIdcrecBeforeFDP[index] -
+            finalCostOfMoney[index] -
+            finalDirectCapitalCast[index] -
             finalRemunerationFeeRecovery[index]
           );
         });
@@ -369,9 +369,11 @@ const TotalGovernmentReceipt = () => {
         {mainChartData?.datasets.length && (
           <h1 style={{ textAlign: "center", margin: "32px 0" }}>
             Sum:
-            {numberWithCommas(mainChartData.datasets[0].data.reduce(
-              (prev, current) => prev + current
-            ))}
+            {numberWithCommas(
+              mainChartData.datasets[0].data.reduce(
+                (prev, current) => prev + current
+              )
+            )}
           </h1>
         )}
         <div
