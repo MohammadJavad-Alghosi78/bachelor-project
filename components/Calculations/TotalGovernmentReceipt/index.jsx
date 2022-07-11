@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import LoginFormItem from "../../LoginForm/LoginFormItem";
@@ -6,6 +6,7 @@ import LoginFormTitle from "../../LoginForm/LoginFormTitle";
 import { LoginFormWrapper } from "../../LoginForm/style";
 import {
   Chart as ChartJS,
+  ArcElement,
   CategoryScale,
   LinearScale,
   PointElement,
@@ -14,12 +15,14 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { Line } from "react-chartjs-2";
+import { Doughnut, Line } from "react-chartjs-2";
 import numberWithCommas from "../../../utils/number-seperator";
+import { Table, TableCol, TableRow } from "../TotalRecieptContractor/style";
 
 ChartJS.register(
   CategoryScale,
   LinearScale,
+  ArcElement,
   PointElement,
   LineElement,
   Title,
@@ -174,6 +177,55 @@ export const productionRateChartOptions = {
   },
 };
 
+export const eachYearOptions = {
+  responsive: true,
+  interaction: {
+    mode: "index",
+    intersect: false,
+  },
+  stacked: false,
+  plugins: {
+    legend: {
+      position: "top",
+      labels: {
+        font: {
+          size: 14,
+        },
+      },
+    },
+    title: {
+      display: true,
+      text: "Each Year(Percent)",
+      font: {
+        size: 24,
+      },
+    },
+  },
+  scales: {
+    y: {
+      type: "linear",
+      display: true,
+      position: "left",
+    },
+    x: {
+      axis: "",
+      type: "linear",
+      display: true,
+      position: "left",
+      title: "4545454",
+    },
+    y1: {
+      type: "linear",
+      display: true,
+      title: "kfsjaljfl",
+      position: "right",
+      grid: {
+        drawOnChartArea: false,
+      },
+    },
+  },
+};
+
 const TotalGovernmentReceipt = () => {
   const [oilPrice, setOilPrice] = useState("");
   const [productionRate, setProductionRate] = useState("");
@@ -193,6 +245,17 @@ const TotalGovernmentReceipt = () => {
     datasets: [],
   });
   const [mainChartData, setMainChartData] = useState({
+    labels: [],
+    datasets: [],
+  });
+  const [eachYearTotalGovernment, setEachYearTotalGovernment] = useState({
+    labels: [],
+    datasets: [],
+  });
+
+  const [sumContractor, setSumContractor] = useState(0);
+  const [sumGovernment, setSumGovernment] = useState(0);
+  const [doughnutChartData, setDoughnutChartData] = useState({
     labels: [],
     datasets: [],
   });
@@ -223,7 +286,7 @@ const TotalGovernmentReceipt = () => {
           finalRemunerationFeeRecovery,
         } = response.data;
         setOilPriceChartData({
-          labels: finalOilPrice.map((item, index) => index),
+          labels: finalOilPrice.map((item, index) => index + 1),
           datasets: [
             {
               label: "Oil price",
@@ -234,7 +297,7 @@ const TotalGovernmentReceipt = () => {
           ],
         });
         setProductionRateChartData({
-          labels: finalOilPrice.map((item, index) => index),
+          labels: finalOilPrice.map((item, index) => index + 1),
           datasets: [
             {
               label: "Total Government Receipt",
@@ -256,7 +319,7 @@ const TotalGovernmentReceipt = () => {
           );
         });
         setMainChartData({
-          labels: finalOilPrice.map((item, index) => index),
+          labels: finalOilPrice.map((item, index) => index + 1),
           datasets: [
             {
               label: "Total Government Receipt",
@@ -266,9 +329,80 @@ const TotalGovernmentReceipt = () => {
             },
           ],
         });
+        const eachYearData = finalOilPrice.map((item, index) => {
+          return (
+            ((finalOilPrice[index] * finalProductionRate[index] -
+              finalOpex[index] -
+              finalIdcrecAfterFDP[index] -
+              finalIdcrecBeforeFDP[index] -
+              finalCostOfMoney[index] -
+              finalDirectCapitalCast[index] -
+              finalRemunerationFeeRecovery[index]) *
+              100) /
+            (finalOilPrice[index] * finalProductionRate[index])
+          );
+        });
+        setEachYearTotalGovernment({
+          labels: finalOilPrice.map((item, index) => index + 1),
+          datasets: [
+            {
+              label: "Total Government Receipt",
+              data: eachYearData,
+              borderColor: "green",
+              backgroundColor: "green",
+            },
+          ],
+        });
+        setSumContractor(
+          finalOilPrice
+            .map(
+              (item, index) =>
+                finalOpex[index] +
+                finalIdcrecAfterFDP[index] +
+                finalIdcrecBeforeFDP[index] +
+                finalCostOfMoney[index] +
+                finalDirectCapitalCast[index] +
+                finalRemunerationFeeRecovery[index]
+            )
+            .reduce((prev, current) => prev + current)
+        );
+        setSumGovernment(
+          finalOilPrice
+            .map(
+              (item, index) =>
+                finalOilPrice[index] * finalProductionRate[index] -
+                finalOpex[index] -
+                finalIdcrecAfterFDP[index] -
+                finalIdcrecBeforeFDP[index] -
+                finalCostOfMoney[index] -
+                finalDirectCapitalCast[index] -
+                finalRemunerationFeeRecovery[index]
+            )
+            .reduce((prev, current) => prev + current)
+        );
       })
       .catch((error) => console.log(error));
   };
+
+  useEffect(() => {
+    if (sumGovernment && sumContractor) {
+      setDoughnutChartData({
+        labels: ["Total Receipt Contractor", "Total Government Receipt"],
+        datasets: [
+          {
+            label: "# of Votes",
+            data: [sumContractor, sumGovernment],
+            backgroundColor: [
+              "rgba(255, 99, 132, 0.2)",
+              "rgba(54, 162, 235, 0.2)",
+            ],
+          },
+        ],
+      });
+    }
+    console.log("sumGovernment: ", sumGovernment);
+    console.log("sumContractor: ", sumContractor);
+  }, [sumGovernment, sumContractor]);
 
   return (
     <Row>
@@ -391,13 +525,65 @@ const TotalGovernmentReceipt = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            margin: "24px 0",
+            margin: "32px 0",
           }}
         >
           <Line
             options={productionRateChartOptions}
             data={productionRateChartData}
           />
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            margin: "32px 0",
+          }}
+        >
+          <Line options={eachYearOptions} data={eachYearTotalGovernment} />
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            margin: "32px 0",
+          }}
+        >
+          <Doughnut data={doughnutChartData} />
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            width: "100%",
+            alignItems: "center",
+            margin: "32px 0",
+          }}
+        >
+          <Table>
+            <TableRow>
+              <TableCol>Total Receipt Contractor</TableCol>
+              <TableCol>
+                {(
+                  (sumContractor * 100) /
+                  (sumContractor + sumGovernment)
+                ).toFixed(2)}
+                %
+              </TableCol>
+            </TableRow>
+            <TableRow>
+              <TableCol>Total Government Receipt</TableCol>
+              <TableCol>
+                {(
+                  (sumGovernment * 100) /
+                  (sumContractor + sumGovernment)
+                ).toFixed(2)}
+                %
+              </TableCol>
+            </TableRow>
+          </Table>
         </div>
       </Col>
     </Row>

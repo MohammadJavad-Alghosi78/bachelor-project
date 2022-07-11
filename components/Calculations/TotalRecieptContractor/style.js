@@ -5,6 +5,7 @@ export const Table = styled.div`
     border-radius: 15px;
     padding: 12px;
     margin-bottom: 24px;
+    width: 100%;
 `;
 
 export const TableRow = styled.div`

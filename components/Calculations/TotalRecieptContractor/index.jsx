@@ -326,40 +326,44 @@ const TotalRecieptContractor = () => {
         >
           <Doughnut data={doughnutChartData} />
         </div>
-        <Table>
-          <TableRow>
-            <TableCol>opex</TableCol>
-            <TableCol>{((sumOpex * 100) / total).toFixed(2)}%</TableCol>
-          </TableRow>
-          <TableRow>
-            <TableCol>indirect costs recovery before fdp</TableCol>
-            <TableCol>
-              {((sumIdcrecBeforeFDP * 100) / total).toFixed(2)}%
-            </TableCol>
-          </TableRow>
-          <TableRow>
-            <TableCol>indirect costs recovery after fdp</TableCol>
-            <TableCol>
-              {((sumIdcrecAfterFDP * 100) / total).toFixed(2)}%
-            </TableCol>
-          </TableRow>
-          <TableRow>
-            <TableCol>cost of money recovery</TableCol>
-            <TableCol>{((sumCostOfMoney * 100) / total).toFixed(2)}%</TableCol>
-          </TableRow>
-          <TableRow>
-            <TableCol>direct capital costs recovery</TableCol>
-            <TableCol>
-              {((sumDirectCapitalCast * 100) / total).toFixed(2)}%
-            </TableCol>
-          </TableRow>
-          <TableRow>
-            <TableCol>remuneration recovery</TableCol>
-            <TableCol>
-              {((sumRemunerationFeeRecovery * 100) / total).toFixed(2)}%
-            </TableCol>
-          </TableRow>
-        </Table>
+        {total > 1 && (
+          <Table>
+            <TableRow>
+              <TableCol>opex</TableCol>
+              <TableCol>{((sumOpex * 100) / total).toFixed(2)}%</TableCol>
+            </TableRow>
+            <TableRow>
+              <TableCol>indirect costs recovery before fdp</TableCol>
+              <TableCol>
+                {((sumIdcrecBeforeFDP * 100) / total).toFixed(2)}%
+              </TableCol>
+            </TableRow>
+            <TableRow>
+              <TableCol>indirect costs recovery after fdp</TableCol>
+              <TableCol>
+                {((sumIdcrecAfterFDP * 100) / total).toFixed(2)}%
+              </TableCol>
+            </TableRow>
+            <TableRow>
+              <TableCol>cost of money recovery</TableCol>
+              <TableCol>
+                {((sumCostOfMoney * 100) / total).toFixed(2)}%
+              </TableCol>
+            </TableRow>
+            <TableRow>
+              <TableCol>direct capital costs recovery</TableCol>
+              <TableCol>
+                {((sumDirectCapitalCast * 100) / total).toFixed(2)}%
+              </TableCol>
+            </TableRow>
+            <TableRow>
+              <TableCol>remuneration recovery</TableCol>
+              <TableCol>
+                {((sumRemunerationFeeRecovery * 100) / total).toFixed(2)}%
+              </TableCol>
+            </TableRow>
+          </Table>
+        )}
       </Col>
     </Row>
   );
