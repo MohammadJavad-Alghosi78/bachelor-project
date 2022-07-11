@@ -17,6 +17,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import { Table, TableCol, TableRow } from "./style";
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -112,6 +113,15 @@ const TotalRecieptContractor = () => {
   const [directCapitalCast, setDirectCapitalCast] = useState("");
   const [remunerationFeeRecovery, setRemunerationFeeRecovery] = useState("");
 
+  const [sumOpex, setSumOpex] = useState(0);
+  const [sumIdcrecBeforeFDP, setSumIdcrecBeforeFDP] = useState(0);
+  const [sumIdcrecAfterFDP, setSumIdcrecAfterFDP] = useState(0);
+  const [sumCostOfMoney, setSumCostOfMoney] = useState(0);
+  const [sumDirectCapitalCast, setSumDirectCapitalCast] = useState(0);
+  const [sumRemunerationFeeRecovery, setSumRemunerationFeeRecovery] =
+    useState(0);
+  const [total, setTotal] = useState(1);
+
   const [chartData, setChartData] = useState({
     labels: [],
     datasets: [],
@@ -153,10 +163,10 @@ const TotalRecieptContractor = () => {
           );
         });
         setChartData({
-          labels: finalOpex.map((item, index) => index),
+          labels: finalOpex.map((item, index) => index + 1),
           datasets: [
             {
-              label: "test",
+              label: "Total Receipt Contractor",
               data: mainChartData,
               borderColor: "black",
               backgroundColor: "black",
@@ -164,20 +174,34 @@ const TotalRecieptContractor = () => {
           ],
         });
         const sumOpex = finalOpex.reduce((prev, current) => prev + current);
+        setSumOpex(sumOpex);
         const sumIdcrecAfterFDP = finalIdcrecAfterFDP.reduce(
           (prev, current) => prev + current
         );
+        setSumIdcrecAfterFDP(sumIdcrecAfterFDP);
         const sumIdcrecBeforeFDP = finalIdcrecBeforeFDP.reduce(
           (prev, current) => prev + current
         );
+        setSumIdcrecBeforeFDP(sumIdcrecBeforeFDP);
         const sumCostOfMoney = finalCostOfMoney.reduce(
           (prev, current) => prev + current
         );
+        setSumCostOfMoney(sumCostOfMoney);
         const sumDirectCapitalCast = finalDirectCapitalCast.reduce(
           (prev, current) => prev + current
         );
+        setSumDirectCapitalCast(sumDirectCapitalCast);
         const sumRemunerationFeeRecovery = finalRemunerationFeeRecovery.reduce(
           (prev, current) => prev + current
+        );
+        setSumRemunerationFeeRecovery(sumRemunerationFeeRecovery);
+        setTotal(
+          sumOpex +
+            sumIdcrecAfterFDP +
+            sumIdcrecBeforeFDP +
+            sumCostOfMoney +
+            sumDirectCapitalCast +
+            sumRemunerationFeeRecovery
         );
         setDoughnutChartData({
           labels: [
@@ -302,6 +326,40 @@ const TotalRecieptContractor = () => {
         >
           <Doughnut data={doughnutChartData} />
         </div>
+        <Table>
+          <TableRow>
+            <TableCol>opex</TableCol>
+            <TableCol>{((sumOpex * 100) / total).toFixed(2)}%</TableCol>
+          </TableRow>
+          <TableRow>
+            <TableCol>indirect costs recovery before fdp</TableCol>
+            <TableCol>
+              {((sumIdcrecBeforeFDP * 100) / total).toFixed(2)}%
+            </TableCol>
+          </TableRow>
+          <TableRow>
+            <TableCol>indirect costs recovery after fdp</TableCol>
+            <TableCol>
+              {((sumIdcrecAfterFDP * 100) / total).toFixed(2)}%
+            </TableCol>
+          </TableRow>
+          <TableRow>
+            <TableCol>cost of money recovery</TableCol>
+            <TableCol>{((sumCostOfMoney * 100) / total).toFixed(2)}%</TableCol>
+          </TableRow>
+          <TableRow>
+            <TableCol>direct capital costs recovery</TableCol>
+            <TableCol>
+              {((sumDirectCapitalCast * 100) / total).toFixed(2)}%
+            </TableCol>
+          </TableRow>
+          <TableRow>
+            <TableCol>remuneration recovery</TableCol>
+            <TableCol>
+              {((sumRemunerationFeeRecovery * 100) / total).toFixed(2)}%
+            </TableCol>
+          </TableRow>
+        </Table>
       </Col>
     </Row>
   );

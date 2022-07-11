@@ -58,7 +58,7 @@ export const mainChartOptions = {
       position: "left",
     },
     x: {
-      axis: "test",
+      axis: "",
       type: "linear",
       display: true,
       position: "left",
@@ -107,7 +107,7 @@ export const oilPriceChartOptions = {
       position: "left",
     },
     x: {
-      axis: "test",
+      axis: "",
       type: "linear",
       display: true,
       position: "left",
@@ -156,7 +156,7 @@ export const productionRateChartOptions = {
       position: "left",
     },
     x: {
-      axis: "test",
+      axis: "",
       type: "linear",
       display: true,
       position: "left",
