@@ -503,8 +503,8 @@ const TotalGovernmentReceipt = () => {
             {numberWithCommas(
               mainChartData.datasets[0].data.reduce(
                 (prev, current) => prev + current
-              )
-            ) / 1000}
+              ) / 1000
+            )}
           </h1>
         )}
         <div
