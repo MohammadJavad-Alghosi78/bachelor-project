@@ -397,8 +397,6 @@ const TotalGovernmentReceipt = () => {
         ],
       });
     }
-    console.log("sumGovernment: ", sumGovernment);
-    console.log("sumContractor: ", sumContractor);
   }, [sumGovernment, sumContractor]);
 
   return (
@@ -501,9 +499,11 @@ const TotalGovernmentReceipt = () => {
           <h1 style={{ textAlign: "center", margin: "32px 0" }}>
             Sum:
             {numberWithCommas(
-              mainChartData.datasets[0].data.reduce(
-                (prev, current) => prev + current
-              ) / 1000
+              String(
+                mainChartData.datasets[0].data.reduce(
+                  (prev, current) => prev + current
+                ) / 1000
+              ).split(".")[0]
             )}
           </h1>
         )}
