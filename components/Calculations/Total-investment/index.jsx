@@ -186,13 +186,13 @@ const TotalInvestmentForm = () => {
             <span style={{ fontWeight: "bold", display: "block" }}>
               (
               {String(
-                (finalExpAppCosts * 100) /
+                (finalExpAppCosts) /
                   (finalExpAppCosts +
                     finalDirectCapitalCast +
                     finalIndirectCostsList)
               )
                 .split(".")[1]
-                .slice(0, 4) / 100}
+                ?.slice(0, 4) / 100}
               % )
             </span>
           </h3>
@@ -202,13 +202,13 @@ const TotalInvestmentForm = () => {
             <span style={{ fontWeight: "bold", display: "block" }}>
               (
               {String(
-                (finalDirectCapitalCast * 100) /
+                (finalDirectCapitalCast) /
                   (finalExpAppCosts +
                     finalDirectCapitalCast +
                     finalIndirectCostsList)
               )
                 .split(".")[1]
-                .slice(0, 4) / 100}
+                ?.slice(0, 4) / 100}
               % )
             </span>
           </h3>
@@ -224,7 +224,7 @@ const TotalInvestmentForm = () => {
                     finalIndirectCostsList)
               )
                 .split(".")[1]
-                .slice(0, 4) / 100}
+                ?.slice(0, 4) / 100}
               % )
             </span>
           </h3>
