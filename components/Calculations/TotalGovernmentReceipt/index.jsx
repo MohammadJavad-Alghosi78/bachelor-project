@@ -392,10 +392,7 @@ const TotalGovernmentReceipt = () => {
           {
             label: "# of Votes",
             data: [sumContractor, sumGovernment],
-            backgroundColor: [
-              "rgba(255, 99, 132, 1)",
-              "rgba(54, 162, 235, 1)",
-            ],
+            backgroundColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)"],
           },
         ],
       });
@@ -507,7 +504,7 @@ const TotalGovernmentReceipt = () => {
               mainChartData.datasets[0].data.reduce(
                 (prev, current) => prev + current
               )
-            )}
+            ) / 1000}
           </h1>
         )}
         <div
