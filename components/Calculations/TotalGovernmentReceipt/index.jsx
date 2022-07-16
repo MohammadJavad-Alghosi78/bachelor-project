@@ -504,7 +504,8 @@ const TotalGovernmentReceipt = () => {
                   (prev, current) => prev + current
                 ) / 1000
               ).split(".")[0]
-            )}
+            )}{" "}
+            Billion
           </h1>
         )}
         <div
