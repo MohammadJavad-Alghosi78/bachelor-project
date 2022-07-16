@@ -197,7 +197,7 @@ const TotalInvestmentForm = () => {
             </span>
           </h3>
           <h3>
-            Sum of direct capital costs:{" "}
+            Sum of direct capital costs:
             {String(finalDirectCapitalCast).split(".")[0] / 1000}
             <span style={{ fontWeight: "bold", display: "block" }}>
               (
