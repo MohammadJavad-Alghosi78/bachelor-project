@@ -185,12 +185,14 @@ const TotalInvestmentForm = () => {
             Sum of exploration and appraisal costs: {finalExpAppCosts / 1000}
             <span style={{ fontWeight: "bold", display: "block" }}>
               (
-              {(finalExpAppCosts * 100) /
-                (
-                  finalExpAppCosts +
-                  finalDirectCapitalCast +
-                  finalIndirectCostsList
-                ).toFixed(2)}
+              {String(
+                (finalExpAppCosts * 100) /
+                  (finalExpAppCosts +
+                    finalDirectCapitalCast +
+                    finalIndirectCostsList)
+              )
+                .split(".")[1]
+                .slice(0, 4) / 100}
               % )
             </span>
           </h3>
@@ -198,12 +200,14 @@ const TotalInvestmentForm = () => {
             Sum of direct capital costs: {finalDirectCapitalCast / 1000}
             <span style={{ fontWeight: "bold", display: "block" }}>
               (
-              {(finalDirectCapitalCast * 100) /
-                (
-                  finalExpAppCosts +
-                  finalDirectCapitalCast +
-                  finalIndirectCostsList
-                ).toFixed(2)}
+              {String(
+                (finalDirectCapitalCast * 100) /
+                  (finalExpAppCosts +
+                    finalDirectCapitalCast +
+                    finalIndirectCostsList)
+              )
+                .split(".")[1]
+                .slice(0, 4) / 100}
               % )
             </span>
           </h3>
@@ -211,12 +215,14 @@ const TotalInvestmentForm = () => {
             Sum of indirect costs: {finalIndirectCostsList / 1000}
             <span style={{ fontWeight: "bold", display: "block" }}>
               (
-              {(finalIndirectCostsList * 100) /
-                (
-                  finalExpAppCosts +
-                  finalDirectCapitalCast +
-                  finalIndirectCostsList
-                ).toFixed(2)}
+              {String(
+                finalIndirectCostsList /
+                  (finalExpAppCosts +
+                    finalDirectCapitalCast +
+                    finalIndirectCostsList)
+              )
+                .split(".")[1]
+                .slice(0, 4) / 100}
               % )
             </span>
           </h3>
